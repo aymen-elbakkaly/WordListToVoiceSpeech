@@ -1,0 +1,43 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model google_cloud_services {
+  id          Int    @id @default(autoincrement())
+  name        String
+  package     String
+  description String
+  limit       Int
+  request_services request_services[]
+}
+
+model request_to_google_cloud {
+  id          Int      @id @default(autoincrement())
+  characters  Int
+  starting_at DateTime
+  ending_at   DateTime
+  created_at  DateTime @default(now())
+  updated_at  DateTime @map("updated_at") @updatedAt
+  request_services request_services[]
+}
+
+model request_services {
+  request_id Int
+  service_id Int
+  request_to_google_cloud request_to_google_cloud @relation(fields: [request_id], references: [id])
+  google_cloud_services   google_cloud_services   @relation(fields: [service_id], references: [id])
+
+  @@id([request_id, service_id])
+}
+
+model determinant_data {
+  id         Int      @id @default(autoincrement())
+  value      String
+  created_at DateTime @default(now())
+  updated_at DateTime @map("updated_at") @updatedAt
+}
