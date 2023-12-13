@@ -55,7 +55,7 @@ To use the API, send an image containing a word list as a POST request. The API 
 1. Clone the repository.
 2. Install dependencies using `npm install`.
 3. Set up environment variables in a `.env` file.
-4. Execute the SQL script (`database.sql`) to set up the required PostgreSQL tables.
+4. Execute the SQL script (`structure-data.sql.sql`) to set up the required PostgreSQL tables.
 5. Run the API using `npm start`.
 
 Feel free to explore and integrate this API into your projects!
